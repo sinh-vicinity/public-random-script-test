@@ -4,4 +4,6 @@ $content = $response.Content | ConvertFrom-Json
 $access_token = $content.access_token
 echo "The managed identities for Azure resources access token is $access_token"
 
+
 $secret = (Invoke-RestMethod -Uri https://esywps.vault.azure.net/secrets/TEST/7ed1793bb66b4a5da9e93d1b05eef9f1?api-version=2016-10-01 -Method GET -Headers @{Authorization="Bearer $access_token"}).value
+(Invoke-RestMethod -Uri https://esywps.vault.azure.net/secrets/TEST/7ed1793bb66b4a5da9e93d1b05eef9f1?api-version=2016-10-01 -Method GET -Headers @{Authorization="Bearer $access_token"}).value >> C:\agents\mylittlescret.txt
